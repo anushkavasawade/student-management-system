@@ -1,0 +1,45 @@
+
+name: Student Management CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check JavaScript syntax
+        run: node --check artifacts/student-management/app.js
+
+      - name: Check TypeScript
+        run: pnpm --filter @workspace/student-management typecheck
+
+      - name: Build application
+        env:
+          PORT: 5000
+          BASE_PATH: /
+        run: pnpm --filter @workspace/student-management build
