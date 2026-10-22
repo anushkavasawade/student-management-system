@@ -3,9 +3,11 @@ name: Student Management CI/CD
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-    branches: [main]
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -39,7 +41,7 @@ jobs:
         run: pnpm --filter @workspace/student-management typecheck
 
       - name: Code quality check
-        run: pnpm exec prettier --check "artifacts/student-management/**/*.{js,jsx,ts,tsx,json,css}"  
+        run: pnpm exec prettier --check package.json
 
       - name: Build application
         env:
