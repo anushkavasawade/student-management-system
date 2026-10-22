@@ -37,6 +37,9 @@ jobs:
       - name: Check JavaScript syntax
         run: node --check artifacts/student-management/app.js
 
+      - name: Run automated tests
+        run: node --test scripts/tests/*.test.cjs
+
       - name: Check TypeScript
         run: pnpm --filter @workspace/student-management typecheck
 
