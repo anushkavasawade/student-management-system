@@ -69,6 +69,7 @@ test("Student Management app renders its dashboard and sample records", () => {
 
   assert.match(appElement.innerHTML, /Campus Desk/);
   assert.match(appElement.innerHTML, /Total students/);
-  assert.match(appElement.innerHTML, /Aarav Sharma/);
+  assert.match(appElement.innerHTML, /Ishita Bose/);
   assert.match(appElement.innerHTML, /Students by department/);
+  assert.match(appElement.innerHTML, /Recently added students/);
 });
