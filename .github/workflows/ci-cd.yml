@@ -38,6 +38,9 @@ jobs:
       - name: Check TypeScript
         run: pnpm --filter @workspace/student-management typecheck
 
+      - name: Code quality check
+        run: pnpm exec prettier --check "artifacts/student-management/**/*.{js,jsx,ts,tsx,json,css}"  
+
       - name: Build application
         env:
           PORT: 5000
