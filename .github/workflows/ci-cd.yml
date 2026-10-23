@@ -44,7 +44,7 @@ jobs:
         run: pnpm --filter @workspace/student-management typecheck
 
       - name: Code quality check
-        run: pnpm exec prettier --check artifacts/student-management/app.js
+        run: node --check artifacts/student-management/app.js
 
       - name: Build application
         env:
